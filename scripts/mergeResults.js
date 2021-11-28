@@ -1,0 +1,1 @@
+bence direk olarak csv de tek bi yere yazdırmak gerek 

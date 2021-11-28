@@ -1,0 +1,24 @@
+{
+  "name": "ca-scrape-server",
+  "version": "1.0.1",
+  "description": "twitter scrape with node js ",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node --max-old-space-size=8192 app",
+    "inspect": "node-inspect app.js"
+  },
+  "author": "aybike.erol, ceyhuncelik",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dayjs": "^1.10.4",
+    "express": "^4.17.1",
+    "immutable": "^4.0.0-rc.12",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.5.0"
+  }
+}
