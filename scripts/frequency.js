@@ -4,7 +4,7 @@ const { CLASSIFICATION_KEYWORDS_LOOKUP } = require('../configs/constants');
 const db = require('../models');
 const { trainingAll } = require('../training/training-all');
 const { csvToArray } = require("../utils/helpers");
-const cvsResult = require("../results/results.cvs");
+// const cvsResult = require("../results/results.cvs");
 
 const generateFrequencyData = async ({ limit, offset }) => {
   const tweetIdList = [];
@@ -111,15 +111,15 @@ const composeTrainingData = async () => {
 
 const composeResultData = async () => {
   // json datayı okuyup frequency icinde tweet idnin eslestigi satırda isTraining satırını update edecek 
-  const updatedTweetIdList = [];
-  const resultArray = csvToArray(cvsResult) // txt olarak okumak gerek sanrısam ama du bakalım 
+  // const updatedTweetIdList = [];
+  // const resultArray = csvToArray(cvsResult) // txt olarak okumak gerek sanrısam ama du bakalım 
 
-  await resultArray.forEach(async (item) => {
-    await db.frequency.update({ isViolence: item.isViolence }, { where: { id: item.id }}).then(result => console.log(result + '-----------------'));
-    updatedTweetIdList.push(item.tweetId);
-  });
+  // await resultArray.forEach(async (item) => {
+  //   await db.frequency.update({ isViolence: item.isViolence }, { where: { id: item.id }}).then(result => console.log(result + '-----------------'));
+  //   updatedTweetIdList.push(item.tweetId);
+  // });
 
-  return {tweetIds: updatedTweetIdList, result: 'succes' };
+  // return {tweetIds: updatedTweetIdList, result: 'succes' };
 }
 
 // _____

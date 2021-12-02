@@ -4,22 +4,23 @@ const dayjs = require('dayjs');
 
 const db = require('./models');
 const { getGender } = require('./services/genderApi');
+const { DB_CONFIGS } = require('./configs/constants');
 
 let successOperationCount = 0;
 let failureOperationCount = 0;
 
 const connectToggle = (toggle = 'start', connectionRef) => {
-  
+  const { host, port, user, password, queryTimeout, connectTimeout, insecureAuth, database } = DB_CONFIGS;
   if (toggle === 'start') {
     const connection = mysql.createConnection({
-      host: 'localhost',
-      port: 3306,
-      user: 'root',
-      password: '1234',
-      database: 'ca-scrape',
-      queryTimeout: 6000,
-      connectTimeout: 60000,
-      insecureAuth : true,
+      host,
+      port,
+      user,
+      password,
+      database,
+      queryTimeout,
+      connectTimeout,
+      insecureAuth,
     });
     
     connection.connect(err => {

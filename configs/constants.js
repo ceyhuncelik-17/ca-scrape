@@ -17,25 +17,28 @@ const QUERY_STRING_CONSTANTS = {
   include_can_dm: 1,
   include_can_media_tag: 1,
   skip_status: 1,
+  include_ext_has_nft_avatar: 1,
 
   cards_platform: 'Web-12',
   include_cards: 1,
   include_ext_alt_text: true,
   include_quote_count: true,
   include_reply_count: 1,
-  // tweet_mode: 'extended',
+  tweet_mode: 'extended',
   include_entities: true,
   include_user_entities: true,
   include_ext_media_color: true,
   include_ext_media_availability: true,
   send_error_codes: true,
   simple_quoted_tweets: true,
+  include_ext_sensitive_media_warning: true,
   // query_source: 'spelling_expansion_revert_click',
   query_source: 'typed_query',
-  pc: 1,
+  pc: 0,
   spelling_corrections: 1,
-  ext: 'ext=mediaStats%2ChighlightedLabel',
+  ext: 'mediaStats%ighlightedLabel%2CvoiceInfo%2CsuperFollowMetadata',
 };
+
 
 const TOKEN_QUERY_STRINGS_CONSTANTS = {
   grant_type: 'client_credentials'
@@ -53,12 +56,11 @@ const USER_AGENT  = 'Mozilla/5.0 (iPhone; CPU iPhone OS 12_2 like Mac OS X) Appl
 const ORIGIN      = 'https://twitter.com';
 
 const DB_CONFIGS = {
-  host:           'localhost',
+  host:           '127.0.0.1',
   port:            3306,
   user:           'root',
-  password:       '1234',
-  // database:       'ca-scrape',
-  database:       'dbForTest',
+  password:       'admin',
+  database:       'ca-scrape',
   dialect:        'mysql',
   queryTimeout:    6000,
   connectTimeout:  60000,

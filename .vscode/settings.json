@@ -1,0 +1,5 @@
+{
+  "nodeDebugProcessPicker.match": [
+    "**/app.js"
+  ]
+}
