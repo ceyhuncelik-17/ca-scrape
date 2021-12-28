@@ -1,3 +1,8 @@
+// imported constant
+const { stopWordsList, stopWordsObject } = require('./stopWords');
+
+const STOP_WORDS_LIST = stopWordsList;
+const STOP_WORDS_OBJECT = stopWordsObject;
 // server params 
 const SERVER_PORT = 8080;
 const SERVER_HOST = 'localhost';
@@ -87,13 +92,13 @@ const ATTR_SET_ID = 1124;
 
 const CLASSIFICATION_KEYWORDS_LOOKUP = [
   // siddet oldugunu belirten 
-  { id: 1, value: 'violence' },
-  { id: 2, value: 'abuse' },
-  { id: 3, value: 'assault' },
-  { id: 4, value: 'rape' },
-  { id: 5, value: 'harass' },
-  { id: 6, value: 'murder' },
-  { id: 7, value: 'gender' },
+  { id: 1, value: 'violence' }, // 6 dec 
+  { id: 2, value: 'abuse' },    // 6 dec nearly 
+  { id: 3, value: 'assault' }, // 
+  { id: 4, value: 'rape' }, //
+  { id: 5, value: 'harass' }, //
+  { id: 6, value: 'murder' }, //
+  { id: 7, value: 'gender' }, // 
   { id: 8, value: 'base' },
   { id: 9, value: 'sexual' },
   { id: 10, value: 'kill' },
@@ -156,4 +161,7 @@ module.exports = {
 
   ATTR_SET_ID,
   CLASSIFICATION_KEYWORDS_LOOKUP,
+
+  STOP_WORDS_LIST,
+  STOP_WORDS_OBJECT,
 };

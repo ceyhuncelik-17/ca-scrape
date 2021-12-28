@@ -1,6 +1,6 @@
 const { update } = require("immutable");
 const { Op } = require("sequelize");
-const { CLASSIFICATION_KEYWORDS_LOOKUP } = require('../configs/constants');
+const { CLASSIFICATION_KEYWORDS_LOOKUP, STOP_WORDS_OBJECT } = require('../configs/constants');
 const db = require('../models');
 const { trainingAll } = require('../training/training-all');
 const { csvToArray } = require("../utils/helpers");
@@ -27,22 +27,25 @@ const generateFrequencyData = async ({ limit, offset }) => {
     const { userId, verified, gender, followersCount, friendsCount, statusCount,  } = user;
     const userFavoritesCount = user.favoriteCount;
 
-    const countsForFrequency = await frequencyCounter(fullText);
-    await db.frequency.create({
-      userId,
-      tweetId,
-      verified,
-      gender,
-      followersCount,
-      friendsCount,
-      tweetFavoritesCount: favoriteCount,
-      userFavoritesCount,
-      statusCount,
-      retweetCount,
-      tweetDate,
-      isViolence: null,
-      ...countsForFrequency
-    });
+    const tempFullTextArray = splitFullText(fullText);
+    const fullTextArray = clearFullText(tempFullTextArray);
+    
+    // const countsForFrequency = await frequencyCounter(fullText);
+    // await db.frequency.create({
+    //   userId,
+    //   tweetId,
+    //   verified,
+    //   gender,
+    //   followersCount,
+    //   friendsCount,
+    //   tweetFavoritesCount: favoriteCount,
+    //   userFavoritesCount,
+    //   statusCount,
+    //   retweetCount,
+    //   tweetDate,
+    //   isViolence: null,
+    //   ...countsForFrequency
+    // });
     tweetIdList.push(tweetId);
   });
 
@@ -70,7 +73,6 @@ const generateFrequencyAllData = async ({ limit, offset }) => {
   } else {
     await generateFrequencyAllData({ limit: nextLimit, offset: nextOffset });
   }
-  
 }
 
 // keyList [1,2,3,4,5,6,] etc
@@ -78,7 +80,9 @@ const generateFrequencyAllData = async ({ limit, offset }) => {
 const frequencyCounter = (fullText, keyList) => {
   const tempCountsForFrequency = {};
 
-  const fullTextWordList = fullText.split(' '); 
+  // const fullTextWordList = fullText.split(' '); 
+  const splitRegex = /[.,\/ -_#]/; // 
+  const fullTextWordList = fullText.split(' ');
   let filteredLookupList = CLASSIFICATION_KEYWORDS_LOOKUP;
 
   if (keyList && keyList.length > 0) {
@@ -171,6 +175,28 @@ const updateFrequencyAllData = async ({ limit, offset, keyList }) => {
   }
   
 }
+
+
+// _______________________________________
+
+const clearFullText = (fullTextArray) => {
+  const filteredList = fullTextArray.filter(item => {
+    const clearRegex = /(\W)/g;
+    const tempItem = item.trim().replace(clearRegex, '').toLowerCase();
+    if(tempItem && tempItem.length > 1 && !STOP_WORDS_OBJECT[tempItem]) {
+      return true;
+    }
+    return false;
+  })
+  return filteredList;
+}
+
+const splitFullText = (fullText) => {
+  const splitRegex = /(\W+|[_]+)/g; // split tweet full text with special karakters and _ then returnt splited text array 
+  
+  return fullText.split(splitRegex);
+}
+// _______________________________________
 
 
 module.exports = {
