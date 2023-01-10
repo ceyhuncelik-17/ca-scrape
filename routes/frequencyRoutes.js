@@ -1,4 +1,5 @@
-const { generateFrequencyData, generateFrequencyAllData, updateFrequencyData, updateFrequencyAllData, composeTrainingData, composeResultData } = require('../scripts/frequency');
+const { generateFrequencyData, generateTermFrequencyTest, generateFrequencyAllData, updateFrequencyData, updateFrequencyAllData, composeTrainingData, composeResultData } = require('../scripts/frequency');
+const { generateTrainData } = require('../scripts/frequencyForJson');
 // const db = require('../models');
 
 
@@ -13,6 +14,32 @@ const calculate_frequency_with_paging = async (req,res) => {
   });
 
 }
+
+// !!
+const calculate_term_frequency_test = async (req,res) => {
+
+  const { page = 1, pageSize = 20 } = req.body;
+  const offset = (page === 0 || page === 1 ) ? 0 :  ((page - 1) * pageSize);
+  
+  const result = await generateTermFrequencyTest({ limit: pageSize, offset });
+  res.json({
+    ...result,
+  });
+
+}
+// 
+const generate_train_dataset = async (req,res) => {
+
+  // const { page = 1, pageSize = 20 } = req.body;
+  // const offset = (page === 0 || page === 1 ) ? 0 :  ((page - 1) * pageSize);
+  
+  const result = await generateTrainData();
+  res.json({
+    ...result,
+  });
+
+}
+
 const calculate_frequency_all = async (req,res) => {
 
   const { page = 1, pageSize = 20 } = req.body;
@@ -67,10 +94,12 @@ const compose_result_data = async (req, res) => {
 
 module.exports = {
   calculate_frequency_with_paging,
+  calculate_term_frequency_test, // !!
   calculate_frequency_all,
   update_frequency_with_paging,
   update_frequency_all,
   compose_training_data,
   compose_result_data,
+  generate_train_dataset,
 };
 

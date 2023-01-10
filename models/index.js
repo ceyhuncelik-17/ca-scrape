@@ -24,6 +24,8 @@ db.user = require("./userModel.js")(sequelize, Sequelize);
 db.log = require("./logModel.js")(sequelize, Sequelize);
 // db.log = require("./attrset_ignore.js")(sequelize, Sequelize);
 db.frequency = require("./frequencyModel.js")(sequelize, Sequelize);
+db.keyIndexTotals = require("./keyIndexTotals.js")(sequelize, Sequelize);
+db.frequencies = require("./frequencies.js")(sequelize, Sequelize);
 
 
 db.tweet.belongsTo(db.user, { foreignKey: 'userId', targetKey: 'userId' });

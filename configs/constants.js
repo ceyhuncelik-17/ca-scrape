@@ -1,5 +1,6 @@
 // imported constant
-const { stopWordsList, stopWordsObject } = require('./stopWords');
+// const { stopWordsList, stopWordsObject } = require('./stopWords');
+const { stopWordsList, stopWordsObject } = require('./stopWords_tr');
 
 const STOP_WORDS_LIST = stopWordsList;
 const STOP_WORDS_OBJECT = stopWordsObject;
@@ -144,6 +145,20 @@ const CLASSIFICATION_KEYWORDS_LOOKUP = [
   ,
 ];
 
+const CLASSIFICATION_KEYWORDS_LOOKUP_TR = [
+  { id: 1, value: 'kadın', key: 'woman' },
+  { id: 2, value: 'özürlü', key: 'malformed' },
+  { id: 3, value: 'türk', key: 'turk' },
+  { id: 4, value: 'müslüman', key: 'muslim' },
+  { id: 5, value: 'yahudi', key: 'jewish' },
+  { id: 6, value: 'hristiyan', key: 'christian' },
+  { id: 7, value: 'ergen', key: 'adolescent' },
+  // CEKİLECEKLER
+  { id: 8, value: 'mülteci', key: 'refugee' },
+  { id: 9, value: 'fakir', key: 'poor' },
+  { id: 10, value: 'gavur', key: 'infidel' },
+]
+
 module.exports = {
   BAERER_TOKEN,
   BAERER_TOKEN_2,
@@ -161,6 +176,7 @@ module.exports = {
 
   ATTR_SET_ID,
   CLASSIFICATION_KEYWORDS_LOOKUP,
+  CLASSIFICATION_KEYWORDS_LOOKUP_TR,
 
   STOP_WORDS_LIST,
   STOP_WORDS_OBJECT,

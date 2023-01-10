@@ -86,6 +86,11 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.BOOLEAN,
       allowNull: true,
       defaultValues: false,
+    },
+    tfIdfRowIndex: {
+      // field: 'tfIdfRowIndex', 
+      type: Sequelize.INTEGER,
+      allowNull: true,
     }
   }, {
     tableName: 'tweets',
@@ -94,3 +99,15 @@ module.exports = (sequelize, Sequelize) => {
 
   return Tweet;
 };
+
+// dahasonra burdan direk erisim yapabilecegimzi bi arayüz falan mı olustursak ne yapsak bilemedim ki arkadas 
+// temel amac soyle 
+// degerleri listeleyecek 
+// altna hemen full tweet vs bi kac bilgi getirecek 
+// devamında 1 0 dolduracagız sadece bu kadarcık 
+// satır satır onuda iki button ile toparlayabiliriz dusununce ama du bakalım hayırlısı olsun 
+// tek sayfalık bi tasarım dusunelim 
+// yoksa isin icinden cıkılmaz bi hal alabilir bu arkadas 
+// jsondan o satırı getirecek sadece arkadas 
+// satırdaki degeri total degeri 
+// tfIdf hesaplatılmıs degeri diyelim 

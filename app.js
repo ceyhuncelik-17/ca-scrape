@@ -7,7 +7,7 @@ const app = express();
 const { SERVER_HOST, SERVER_PORT } = require('./configs/constants');
 // routers 
 const { scrape_all_with_query, scrape_just_one_for_test, sync_database, drop_database } = require('./routes/scrapeRoutes');
-const { calculate_frequency_with_paging, calculate_frequency_all, update_frequency_all, update_frequency_with_paging, compose_training_data, compose_result_data } = require('./routes/frequencyRoutes');
+const { calculate_frequency_with_paging, calculate_term_frequency_test, calculate_frequency_all, update_frequency_all, update_frequency_with_paging, compose_training_data, compose_result_data, generate_train_dataset } = require('./routes/frequencyRoutes');
 const { rawBodyHandler } = require('./utils/helpers');
 // cors configs 
 // app.use(cors());
@@ -43,6 +43,15 @@ app.get('/get-one', scrape_just_one_for_test);
 * @return  {Json}
 */
 app.post('/calculate-frequency', calculate_frequency_with_paging);
+
+/**
+* its for test will be updated after the test  
+* Body 
+* @param   {Number}        page    
+* @param   {Number}        pageSize  // constant 
+* @return  {Json}
+*/
+app.post('/calculate-term-frequency-test', calculate_term_frequency_test);
 
 /**
 * Body 
@@ -81,6 +90,12 @@ app.get('/compose-training-data', compose_training_data, compose_result_data);
 * @return  {{ msg: String, composeCase: Boolean, tweetIdList }}
 */  
 app.get('/compose-result-data', compose_result_data);
+
+/** generate_train_dataset
+* @param   {}     
+* @return  {{ msg: String, composeCase: Boolean, tweetIdList }}
+*/  
+app.get('/generate-train-dataset', generate_train_dataset);
 
 /** sync-db
 * @param   {}     

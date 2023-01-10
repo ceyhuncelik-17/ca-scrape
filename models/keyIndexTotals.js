@@ -1,8 +1,8 @@
 // user model
 
 module.exports = (sequelize, Sequelize) => {
-  const FreqWords = sequelize.define(
-    "freqWords",
+  const KeyIndexTotals = sequelize.define(
+    "keyIndexTotals",
     {
       id: {
         // field: 'id',
@@ -17,6 +17,12 @@ module.exports = (sequelize, Sequelize) => {
         unique: true,
         allowNull: false,
       },
+      colIndex: {
+        // field: 'colIndex',
+        type: Sequelize.INTEGER,
+        unique: true,
+        allowNull: false,
+      },
       totalCount: {
         // field: 'totalCount',
         type: Sequelize.INTEGER,
@@ -24,13 +30,12 @@ module.exports = (sequelize, Sequelize) => {
       },
     },
     {
-      tableName: "freqWords",
+      tableName: "keyIndexTotals",
       timestamps: true,
     }
   );
 
-  return FreqWords;
+  return KeyIndexTotals;
 };
 
-// bütün kelimeleri kucuk harf olarak kaydetmemiz gerek
-// id key totalCount
+// 
